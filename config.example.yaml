@@ -1,0 +1,19 @@
+# Quality Coach MCP — Configuration
+github:
+  token_env: GITHUB_TOKEN
+  default_org: "Cerios-TechLab"
+
+cicd:
+  provider: github_actions
+
+coverage:
+  source: local
+  format: cobertura
+
+projects:
+  - name: "cerios-clinic"
+    repo: "/srv/cerios-clinic"
+    github: "Steavy/cerios-clinic"
+  - name: "gateway"
+    repo: "/geert-opencode/gateway"
+    github: "Cerios-TechLab/gateway"
