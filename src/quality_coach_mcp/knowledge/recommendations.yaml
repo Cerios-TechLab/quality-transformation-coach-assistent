@@ -1,0 +1,74 @@
+# Context-sensitive quality improvement recommendations
+
+recommendations:
+  - id: "low_coverage"
+    trigger: "coverage_pct < 50"
+    trigger_area: "test_execution"
+    trigger_level: 3
+    priority: "high"
+    title: "Increase Test Coverage"
+    actions:
+      - "Identify uncovered critical paths and add unit tests"
+      - "Set up a coverage gate in CI to prevent regression"
+      - "Focus on integration tests for complex interactions"
+    frameworks: ["TMMi Level 2", "ISO 25010 Maintainability"]
+
+  - id: "no_automation"
+    trigger: "no_ci_cd_or_automation"
+    trigger_area: "test_execution"
+    trigger_level: 3
+    priority: "high"
+    title: "Establish Test Automation"
+    actions:
+      - "Set up a CI pipeline with automated test execution"
+      - "Create a basic regression test suite"
+      - "Implement automated code quality checks"
+    frameworks: ["TMMi Level 2-3"]
+
+  - id: "high_complexity"
+    trigger: "avg_complexity > 15"
+    trigger_area: "test_design"
+    trigger_level: 4
+    priority: "medium"
+    title: "Reduce Code Complexity"
+    actions:
+      - "Refactor high-complexity functions into smaller units"
+      - "Add targeted tests for complex logic"
+      - "Consider extracting complex algorithms into separate modules"
+    frameworks: ["ISO 25010 Maintainability"]
+
+  - id: "flaky_tests"
+    trigger: "flaky_rate > 5"
+    trigger_area: "test_execution"
+    trigger_level: 4
+    priority: "high"
+    title: "Address Flaky Tests"
+    actions:
+      - "Identify and quarantine flaky tests"
+      - "Fix root causes (timing, external dependencies, shared state)"
+      - "Implement retry mechanisms for legitimate transient failures"
+    frameworks: ["TMMi Level 3"]
+
+  - id: "security_gaps"
+    trigger: "no_security_testing"
+    trigger_area: "test_planning"
+    trigger_level: 4
+    priority: "critical"
+    title: "Implement Security Testing"
+    actions:
+      - "Add SAST (Static Application Security Testing) to CI"
+      - "Perform dependency vulnerability scanning"
+      - "Include security-focused test cases for critical paths"
+    frameworks: ["ISO 25010 Security"]
+
+  - id: "no_monitoring"
+    trigger: "no_production_monitoring"
+    trigger_area: "test_execution"
+    trigger_level: 5
+    priority: "medium"
+    title: "Add Production Quality Monitoring"
+    actions:
+      - "Implement error tracking and alerting"
+      - "Add performance monitoring"
+      - "Set up SLA-based quality metrics"
+    frameworks: ["TMMi Level 4", "ISO 25010 Reliability"]

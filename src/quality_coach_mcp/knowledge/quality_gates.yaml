@@ -1,0 +1,55 @@
+# Standard quality gate criteria
+
+gates:
+  - id: "pull_request"
+    name: "Pull Request Gate"
+    description: "Criteria for merging a pull request"
+    criteria:
+      - name: "Code Review"
+        required: true
+        description: "At least one approving review"
+      - name: "Tests Passing"
+        required: true
+        description: "All CI checks must pass"
+      - name: "No Critical Issues"
+        required: true
+        description: "No critical SonarQube or security issues"
+      - name: "Coverage Threshold"
+        required: false
+        threshold: 70
+        metric: "coverage_pct"
+        description: "Minimum 70% test coverage"
+
+  - id: "release"
+    name: "Release Gate"
+    description: "Criteria for production deployment"
+    criteria:
+      - name: "All Tests Passing"
+        required: true
+      - name: "Coverage Above 75%"
+        required: true
+        threshold: 75
+        metric: "coverage_pct"
+      - name: "No High/Critical Vulnerabilities"
+        required: true
+      - name: "Performance Benchmark"
+        required: false
+        threshold: 500
+        metric: "response_time_ms"
+
+  - id: "sprint_quality"
+    name: "Sprint Quality Gate"
+    description: "End-of-sprint quality checklist"
+    criteria:
+      - name: "Sprint Test Coverage"
+        required: true
+        threshold: 70
+        metric: "coverage_pct"
+      - name: "Open Critical Bugs"
+        required: true
+        threshold: 0
+        metric: "critical_bugs"
+      - name: "Regression Tests Run"
+        required: true
+      - name: "Technical Debt Review"
+        required: false

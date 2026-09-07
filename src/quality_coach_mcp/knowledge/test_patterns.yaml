@@ -1,0 +1,72 @@
+# Recognisable test patterns and anti-patterns
+
+patterns:
+  - id: "test_pyramid"
+    name: "Test Pyramid"
+    description: "Many unit tests, fewer integration tests, even fewer E2E tests"
+    good: true
+    indicators:
+      - "High unit test count"
+      - "Moderate integration test count"
+      - "Low E2E test count"
+      - "Unit tests > 60% of total"
+
+  - id: "ice_cream_cone"
+    name: "Ice Cream Cone Anti-Pattern"
+    description: "Too many E2E/manual tests, too few unit tests"
+    good: false
+    indicators:
+      - "E2E tests > unit tests"
+      - "Low unit test percentage"
+      - "Heavy reliance on manual testing"
+
+  - id: "testing_trophy"
+    name: "Testing Trophy"
+    description: "Integration tests as foundation, unit and E2E as supporting layers"
+    good: true
+    indicators:
+      - "Integration tests form the bulk"
+      - "Good unit test coverage"
+      - "Selective E2E tests"
+
+  - id: "test_black_hole"
+    name: "Test Black Hole"
+    description: "Tests exist but provide no value — all passing, no coverage"
+    good: false
+    indicators:
+      - "Tests with no assertions"
+      - "Tests that never fail"
+      - "Tests covering trivial code only"
+
+anti_patterns:
+  - id: "tests_withoutAssertions"
+    name: "Tests Without Assertions"
+    description: "Test methods that don't assert anything"
+    severity: "high"
+    detection:
+      - "Test methods with no assert/expect calls"
+      - "Test methods that only call code without checking results"
+
+  - id: "test_interdependence"
+    name: "Test Interdependence"
+    description: "Tests that depend on execution order or shared state"
+    severity: "high"
+    detection:
+      - "Tests relying on global state"
+      - "Tests modifying shared fixtures"
+
+  - id: "slow_tests"
+    name: "Slow Test Suite"
+    description: "Test suite that takes too long to run"
+    severity: "medium"
+    detection:
+      - "Full suite takes > 10 minutes"
+      - "Individual tests > 30 seconds"
+
+  - id: "fragile_tests"
+    name: "Fragile Tests"
+    description: "Tests that break on minor code changes"
+    severity: "high"
+    detection:
+      - "Tests coupled to implementation details"
+      - "Tests that break when internal structure changes"
