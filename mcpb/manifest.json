@@ -28,6 +28,22 @@
       }
     }
   },
+  "tools": [
+    {"name": "analyze_code_quality", "description": "Scan a repository for code quality metrics (complexity, duplication, smells)", "input_schema": {"type": "object", "properties": {"repo_path": {"type": "string"}, "branch": {"type": "string", "default": "main"}}, "required": ["repo_path"]}},
+    {"name": "analyze_test_coverage", "description": "Analyze test coverage by comparing test files against source files", "input_schema": {"type": "object", "properties": {"repo_path": {"type": "string"}}, "required": ["repo_path"]}},
+    {"name": "detect_test_patterns", "description": "Detect test patterns and anti-patterns in a repository", "input_schema": {"type": "object", "properties": {"repo_path": {"type": "string"}}, "required": ["repo_path"]}},
+    {"name": "analyze_flaky_tests", "description": "Detect flaky tests from CI run data", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}}, "required": ["github_ref"]}},
+    {"name": "defect_trend_analysis", "description": "Analyze issue trends (volume, resolution time, severity)", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}, "days": {"type": "integer", "default": 90}}, "required": ["github_ref"]}},
+    {"name": "quality_hotspot_detection", "description": "Identify files with the highest defect density", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}}, "required": ["github_ref"]}},
+    {"name": "root_cause_categories", "description": "Categorise closed bugs by root cause", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}}, "required": ["github_ref"]}},
+    {"name": "pipeline_health", "description": "Analyze CI/CD pipeline health (success rate, duration)", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}, "days": {"type": "integer", "default": 30}}, "required": ["github_ref"]}},
+    {"name": "test_result_summary", "description": "Get test results summary for a CI workflow run", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}, "run_id": {"type": "integer"}}, "required": ["github_ref", "run_id"]}},
+    {"name": "quality_gate_check", "description": "Check if quality gates are met", "input_schema": {"type": "object", "properties": {"github_ref": {"type": "string"}, "gate_id": {"type": "string", "default": "pull_request"}, "metrics": {"type": "object"}}, "required": ["github_ref"]}},
+    {"name": "maturity_assessment", "description": "Run a TMMi maturity assessment", "input_schema": {"type": "object", "properties": {"project": {"type": "string"}, "scores": {"type": "object"}}, "required": ["project"]}},
+    {"name": "quality_recommendations", "description": "Generate prioritised improvement recommendations", "input_schema": {"type": "object", "properties": {"maturity_scores": {"type": "object"}, "context": {"type": "object"}}, "required": ["maturity_scores"]}},
+    {"name": "framework_lookup", "description": "Look up ISO 25010 or TMMi frameworks", "input_schema": {"type": "object", "properties": {"framework": {"type": "string"}, "topic": {"type": "string"}}, "required": ["framework"]}},
+    {"name": "generate_quality_report", "description": "Generate a comprehensive Markdown quality report", "input_schema": {"type": "object", "properties": {"project": {"type": "string"}, "period": {"type": "string", "default": "last-30-days"}, "maturity_scores": {"type": "object"}, "coverage_pct": {"type": "number"}, "cicd_success_rate": {"type": "number"}}, "required": ["project"]}}
+  ],
   "keywords": [
     "quality",
     "testing",
