@@ -1,0 +1,386 @@
+{
+  "serverInfo": {
+    "name": "quality-transformation-coach-mcp",
+    "version": "0.1.0"
+  },
+  "tools": [
+    {
+      "name": "analyze_code_quality",
+      "description": "Scan a repository for code quality metrics (complexity, duplication, smells).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "repo_path": {
+            "type": "string",
+            "description": "Local filesystem path to the repository"
+          },
+          "branch": {
+            "default": "main",
+            "type": "string",
+            "description": "Git branch to analyze (default: main)"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "analyze_test_coverage",
+      "description": "Analyze test coverage by comparing test files against source files.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "repo_path": {
+            "type": "string",
+            "description": "Local filesystem path to the repository"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "detect_test_patterns",
+      "description": "Detect test patterns and anti-patterns in a repository.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "repo_path": {
+            "type": "string",
+            "description": "Local filesystem path to the repository"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "analyze_flaky_tests",
+      "description": "Detect flaky tests from CI run data.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          },
+          "run_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional list of workflow run IDs to analyze"
+          }
+        },
+        "required": [
+          "github_ref"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "defect_trend_analysis",
+      "description": "Analyze issue trends (volume, resolution time, severity) for a repository.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          },
+          "days": {
+            "default": 90,
+            "type": "integer",
+            "description": "Number of days to look back (default: 90)"
+          }
+        },
+        "required": [
+          "github_ref"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "quality_hotspot_detection",
+      "description": "Identify files with the highest defect density (hotspots).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          }
+        },
+        "required": [
+          "github_ref"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "root_cause_categories",
+      "description": "Categorise closed bugs by root cause (code, design, requirements, security).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          }
+        },
+        "required": [
+          "github_ref"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "pipeline_health",
+      "description": "Analyze CI/CD pipeline health (success rate, duration trends).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          },
+          "days": {
+            "default": 30,
+            "type": "integer",
+            "description": "Number of days to look back (default: 30)"
+          }
+        },
+        "required": [
+          "github_ref"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "test_result_summary",
+      "description": "Get test results summary for a specific CI workflow run.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          },
+          "run_id": {
+            "type": "integer",
+            "description": "GitHub Actions workflow run ID"
+          }
+        },
+        "required": [
+          "github_ref",
+          "run_id"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "quality_gate_check",
+      "description": "Check if quality gates are met for a project.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "github_ref": {
+            "type": "string",
+            "description": "GitHub 'owner/repo' reference"
+          },
+          "gate_id": {
+            "default": "pull_request",
+            "type": "string",
+            "description": "Quality gate to check (default: 'pull_request')"
+          },
+          "metrics": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional dict of metric values to check against gate criteria"
+          }
+        },
+        "required": [
+          "github_ref"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "maturity_assessment",
+      "description": "Run a TMMi maturity assessment for a project.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project name"
+          },
+          "scores": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional dict mapping assessment areas to scores (1-5)"
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "quality_recommendations",
+      "description": "Generate prioritised quality improvement recommendations.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "maturity_scores": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "description": "Dict mapping maturity areas to scores (1-5)"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional additional context (team size, domain, etc.)"
+          }
+        },
+        "required": [
+          "maturity_scores"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "framework_lookup",
+      "description": "Look up information about a quality framework (ISO 25010, TMMi).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "framework": {
+            "type": "string",
+            "description": "Framework name ('iso25010' or 'tmmi')"
+          },
+          "topic": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional specific topic within the framework"
+          }
+        },
+        "required": [
+          "framework"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "generate_quality_report",
+      "description": "Generate a comprehensive Markdown quality report.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project name"
+          },
+          "period": {
+            "default": "last-30-days",
+            "type": "string",
+            "description": "Reporting period (e.g., 'last-30-days', 'Q3-2026')"
+          },
+          "maturity_scores": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional maturity scores by area"
+          },
+          "coverage_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional test coverage percentage"
+          },
+          "cicd_success_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional CI/CD pipeline success rate"
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "type": "object"
+      }
+    }
+  ]
+}
