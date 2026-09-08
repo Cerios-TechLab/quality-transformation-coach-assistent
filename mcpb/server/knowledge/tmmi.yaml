@@ -1,0 +1,117 @@
+# Testing Maturity Model Integration (TMMi)
+framework: "TMMi"
+version: "2.0"
+description: "Testing Maturity Model with 5 levels and 16 test process areas"
+
+levels:
+  - level: 1
+    name: "Initial"
+    description: "Ad-hoc, chaotic process. Testing is confused and unpredictable."
+    characteristics:
+      - "No defined test process"
+      - "Testing is debugging"
+      - "No test strategy or plan"
+      - "Quality is accidental"
+
+  - level: 2
+    name: "Managed"
+    description: "Basic test management practices are established."
+    characteristics:
+      - "Test policy and strategy exist"
+      - "Test planning is performed"
+      - "Test cases are designed and reviewed"
+      - "Test tracking and reporting"
+      - "Basic defect management"
+    process_areas:
+      - "Test Policy and Strategy"
+      - "Test Planning"
+      - "Test Monitoring and Control"
+      - "Test Design"
+      - "Test Execution"
+      - "Defect Management"
+
+  - level: 3
+    name: "Definition"
+    description: "Testing is defined and standardized across the organization."
+    characteristics:
+      - "Organization-wide test process"
+      - "Test environment management"
+      - "Test training and mentoring"
+      - "Peer reviews and inspections"
+      - "Non-functional testing"
+    process_areas:
+      - "Test Organization"
+      - "Test Training and Mentoring"
+      - "Test Process Lifecycle"
+      - "Functional Test Automation"
+      - "Non-Functional Testing"
+      - "Peer Reviews"
+
+  - level: 4
+    name: "Management"
+    description: "Testing is measured and controlled using quantitative techniques."
+    characteristics:
+      - "Quantitative quality management"
+      - "Test measurement programme"
+      - "Product quality evaluation"
+      - "Process improvement"
+    process_areas:
+      - "Test Measurement"
+      - "Product Quality Evaluation"
+      - "Process Improvement"
+
+  - level: 5
+    name: "Optimization"
+    description: "Testing is continuously improved through innovation and optimisation."
+    characteristics:
+      - "Continuous process improvement"
+      - "Innovation and technology transfer"
+      - "Defect prevention"
+      - "Optimised test process"
+    process_areas:
+      - "Continuous Process Improvement"
+      - "Defect Prevention"
+      - "Quality Control"
+
+assessment_areas:
+  - id: "test_planning"
+    name: "Test Planning"
+    levels:
+      - level: 1
+        indicators: ["No test plan exists", "Testing starts without preparation"]
+      - level: 2
+        indicators: ["Basic test plan exists", "Test objectives defined"]
+      - level: 3
+        indicators: ["Comprehensive test strategy", "Risk-based test planning"]
+      - level: 4
+        indicators: ["Metrics-driven planning", "Estimation models used"]
+      - level: 5
+        indicators: ["Optimised planning process", "Predictive analytics"]
+
+  - id: "test_design"
+    name: "Test Design"
+    levels:
+      - level: 1
+        indicators: ["Ad-hoc test cases", "No systematic approach"]
+      - level: 2
+        indicators: ["Structured test cases", "Basic techniques (BVA, EP)"]
+      - level: 3
+        indicators: ["Formal design techniques", "Review-based design"]
+      - level: 4
+        indicators: ["Model-based design", "Coverage measurement"]
+      - level: 5
+        indicators: ["AI-assisted design", "Continuous optimisation"]
+
+  - id: "test_execution"
+    name: "Test Execution"
+    levels:
+      - level: 1
+        indicators: ["Manual testing only", "No regression testing"]
+      - level: 2
+        indicators: ["Structured execution", "Defect logging"]
+      - level: 3
+        indicators: ["Automation strategy", "Test data management"]
+      - level: 4
+        indicators: ["CI/CD integration", "Automated regression"]
+      - level: 5
+        indicators: ["Self-healing tests", "Production monitoring"]

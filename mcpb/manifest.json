@@ -1,0 +1,49 @@
+{
+  "manifest_version": "0.4",
+  "name": "quality-transformation-coach-mcp",
+  "display_name": "Quality Transformation Coach MCP Server",
+  "version": "0.1.0",
+  "description": "MCP server for software quality transformation coaching — 14 tools for code analysis, CI/CD health, defect trends, maturity assessments (TMMi/ISO 25010), quality gates, and reporting.",
+  "long_description": "A knowledge-based MCP server for software quality transformation, providing tools for both the quality coach (overviews, maturity assessments, reporting) and the development/test team (code analysis, CI/CD insights, test support).",
+  "author": {
+    "name": "Cerios TechLab",
+    "url": "https://github.com/Cerios-TechLab"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cerios-TechLab/quality-transformation-coach-assistent.git"
+  },
+  "homepage": "https://github.com/Cerios-TechLab/quality-transformation-coach-assistent",
+  "support": "https://github.com/Cerios-TechLab/quality-transformation-coach-assistent/issues",
+  "server": {
+    "type": "python",
+    "entry_point": "server/server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": [
+        "server/server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "${__dirname}"
+      }
+    }
+  },
+  "keywords": [
+    "quality",
+    "testing",
+    "mcp",
+    "opencode",
+    "tmmi",
+    "iso25010",
+    "code-analysis",
+    "maturity-assessment",
+    "ci-cd"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "python": ">=3.11"
+    }
+  }
+}
