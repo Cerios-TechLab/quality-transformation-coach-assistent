@@ -6,7 +6,7 @@ Een MCP-server die als assistent dient voor software quality transformation — 
 
 ## Functionaliteiten
 
-De server biedt 14 tools verdeeld over 4 categorieën:
+De server biedt 15 tools verdeeld over 4 categorieën:
 
 ### Code Analyse
 | Tool | Beschrijving |
@@ -28,6 +28,7 @@ De server biedt 14 tools verdeeld over 4 categorieën:
 |---|---|
 | `pipeline_health` | Analyseer CI/CD pipeline gezondheid (success rate, doorlooptijd) |
 | `test_result_summary` | Agregeer test results vanuit CI runs |
+| `cicd_readiness_scan` | Voer een CI/CD Readiness Scan uit (103 vragen, 5 domeinen) |
 | `quality_gate_check` | Controleer of kwaliteits gates behaald zijn |
 
 ### Kennis & Maturity
@@ -149,7 +150,7 @@ pytest tests/ -v
 
 ```
 src/quality_coach_mcp/
-├── server.py              # FastMCP server entry point (14 tools)
+├── server.py              # FastMCP server entry point (15 tools)
 ├── config.py              # Config loading
 ├── models/types.py        # Pydantic data models
 ├── tools/
