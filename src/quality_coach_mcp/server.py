@@ -199,5 +199,19 @@ async def generate_quality_report(
     )
 
 
+@mcp.tool()
+async def cicd_readiness_scan(
+    project: str, answers: dict[str, str] | None = None
+) -> dict:
+    """Run a CI/CD Readiness Scan assessment with 103 questions across 5 domains.
+
+    Args:
+        project: Project name
+        answers: Optional dict mapping question text to 'ja'/'nee'.
+                 If None, returns the full question set for manual assessment.
+    """
+    return await knowledge_tools.cicd_readiness_scan(project, answers)
+
+
 if __name__ == "__main__":
     mcp.run()

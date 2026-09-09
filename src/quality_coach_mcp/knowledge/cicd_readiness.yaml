@@ -1,0 +1,529 @@
+framework: CI/CD Readiness Scan
+version: MVP2
+description: CI/CD Readiness Scan framework met 5 domeinen, 103 vragen en 11 bouwblokken
+  voor het meten van CI/CD volwassenheid.
+domains:
+- id: cultuur_organisatie_
+  name: Cultuur & Organisatie
+  score: 0
+  questions:
+  - question: Wordt het werk van de teams geprioriteerd via Product & Sprint Back
+      Logs?
+    maturity_level: 1
+    explanation: zonder geprioriteerd werk, geen werk naar de ci cd pipeline
+  - question: Zijn de werkprocessen gedefinieerd en gedocumenteerd en wordt er naar
+      geleefd?
+    maturity_level: 1
+    explanation: zonder kan het proces dat de pipeline aanstuurt omvallen
+  - question: Worden er tijdens de sprint frequente commits uitgevoerd? Leeft het
+      besef dat engineers  iteratief moeten opleveren?
+    maturity_level: 1
+    explanation: inzicht in de huidige stavaza
+  - question: De teams werken volgens scrum, kanban of een combinatie ervan.
+    maturity_level: 1
+    explanation: vaststellen of er sprake is van agile werken. Doorvragen of het geen
+      waterval-in-sprints blijkt te zijn
+  - question: Zijn de Change en Release processen beschreven?
+    maturity_level: 1
+    explanation: Is verantwoordelijkheid voor IPW belegd?
+  - question: Is eigenaarschap van de Change en Release processen binnen een team
+      belegd?
+    maturity_level: 2
+    explanation: 'scenario''s voorstellen in gesprek: de build valt om, wat doe je?
+      (en komt het dan uit bij een eigenaar?)'
+  - question: Wordt de pijn op de juiste plek neergelegd zodat niet altijd dezelfde
+      engineer tot laat doorwerkt?
+    maturity_level: 2
+    explanation: T-shaping
+  - question: Is er sprake van stabiele teams?
+    maturity_level: 2
+    explanation: onderzoeken of werk naar vaste teams wordt gebracht
+  - question: Zijn de teamleden t-shaped mbt DEV en TST?
+    maturity_level: 2
+    explanation: mate van multi disciplinairheid onderzoeken
+  - question: Is DEV betrokken bij TEST?
+    maturity_level: 2
+    explanation: stiekem waterval tijdens sprints?
+  - question: Zijn de scrum rollen volledig ingevuld?
+    maturity_level: 2
+    explanation: Geen ontbrekende rollen?
+  - question: Zijn de teams rondom product georganiseerd?
+    maturity_level: 2
+    explanation: Kan ieder team individueel waarde opleveren?
+  - question: Zijn er feedback loops naar enabler teams zoals Service Desk in place?
+    maturity_level: 2
+    explanation: hier niet bedoeld de retro's, maar bijvoorbeeld updaten kennisitems
+      bij service desk vóór livegang, major incident evaluatie met root cause analyse,
+      met als doel service desks en/of klant contact centrum vooraf van informatie
+      te voorzien.
+  - question: Leveren de agile events verbetervoorstellen op?
+    maturity_level: 2
+    explanation: Leren teams van hun werk om zich te verbeteren?
+  - question: Wordt er minimaal dagelijks gecommit?
+    maturity_level: 2
+    explanation: Dit helpt bij code reviews, en ook tijdelijke automatische e2e tests.
+      Als resultaat van dit beleid wordt er voortaan een story in kortere stukken
+      ingepland. We willen dagelijks integreren
+  - question: Denken teams na over individuele klantwaarde die zij als team leveren
+      binnen een groter geheel van een organisatie?
+    maturity_level: 2
+    explanation: schuiven teams halffabrikaten naar elkaar door? Levert een team echt
+      klantwaarde?
+  - question: Worden er binnen de teams peer reviews uitgevoerd?
+    maturity_level: 2
+    explanation: cultuur van transparantie & feedback
+  - question: Worden de tests zoveel mogelijk geautomatiseerd waar nuttig en effectief
+      (vooral voor de regressieset)?
+    maturity_level: 3
+    explanation: Een beperkte set end to end testautomatisering helpt bij ci/cd
+  - question: Worden verbeteringen ook gedemo'd tijdens de reviews?
+    maturity_level: 3
+    explanation: cultuur van transparantie & feedback
+  - question: Worden releases  door change managers gecoördineerd?
+    maturity_level: 3
+    explanation: onderzoeken of er een schutting staat tussen ITIL org en de teams
+  - question: Is team overstijgende samenwerking volgens een methode ingeregeld?
+    maturity_level: 3
+    explanation: is er sprake van een bepaald framework dat gehanteerd wordt om samen
+      te werken, zoals b.v. SAFe?
+  - question: Is het team autonoom in het leveren van waarde?
+    maturity_level: 3
+    explanation: schuiven teams halffabrikaten naar elkaar door? Levert een team echt
+      klantwaarde?
+  - question: Werkt OPS zonder beperkingen in de teams mee?
+    maturity_level: 3
+    explanation: Een ops teamlid zou zonder beperking een change moeten kunnen doorvoeren
+      om ci/cd te kunnen doen. Als dat via manager/anderTeam moet, dan is er sprake
+      van continous un-integration en continous un-delivery
+  - question: Zijn de onderlinge afhankelijkheden in de voortbrengingsketen in kaart
+      gebracht?
+    maturity_level: 3
+    explanation: mate waarin men vanuit mindset 'onderdeel van een keten' acteert
+      + input voor verbeteringen
+  - question: Is in het team een mindset voor non-functionals ontwikkeld en toegepast?
+    maturity_level: 3
+    explanation: Een balans tussen kwaliteit en voortbrengingsproces
+  - question: Wordt er tijdens het ontwikkelproces al gedacht aan hoe features getest
+      gaan worden?
+    maturity_level: 4
+    explanation: Maak gebruik van BDD en Cucumber scenarios voordat je gaat ontwikkelen
+      bv. bij refinen van een story
+  - question: Is er een dedicated tools team?
+    maturity_level: 4
+    explanation: Kan ieder team zoveel mogelijk focus houden op de kerntaken?
+  - question: Nemen teams verantwoordelijkheid de hele weg t/m PROD?
+    maturity_level: 4
+    explanation: (Competentie en vertrouwen)
+  - question: Wordt de business value geverifiëerd? (Bijvoorbeeld Google analytics,
+      page views, klant tevredenheid, etc)
+    maturity_level: 4
+    explanation: Feedback loop van PROD op agile werken
+  - question: Zijn deployments losgekoppeld van Releases?
+    maturity_level: 4
+    explanation: Kunnen features worden gereleased op basis van strategische wensen
+      (bijvoorbeeld op specifieke data zoals vlak voor Sinterklaas of kerst)
+  - question: Is er sprake van cross-functionele teams?
+    maturity_level: 5
+    explanation: teams waarbij business analist, architect, tester en beheerder aansluiten
+      bij developer
+  - question: Wordt het ontwikkelde software ook performance/load getest? Worden deze
+      non-functional aspecten ook besproken bij de ontwikkeling van nieuwe features?
+    maturity_level: 5
+    explanation: Door performance/load tests snel in te zien kunnen er performance
+      verbeteringen of verslechteringen op tijd worden opgemerkt
+  - question: Wordt er altijd een roll-forward uitgevoerd, ook bij incidenten?
+    maturity_level: 5
+    explanation: Roll-forward zorgt voor extreme vormen van automatiseren en optimaliseren
+      van pipelines en processen. Indien een roll-backward mogelijk is, is het proces
+      nog niet genoeg geoptimaliseerd.
+  maturity_levels: {}
+- id: design_architectuur
+  name: Design & Architectuur
+  score: 0
+  questions:
+  - question: Geconsolideerd platform en technologie
+    maturity_level: 1
+    explanation: We willen liefst geen wildgroei aan (legacy) technieken
+  - question: Is de architectuur op grote lijnen vastgelegd?
+    maturity_level: 1
+    explanation: Een (beperkte) vorm van documentatie is nodig om kaders en richting
+      aan te geven
+  - question: Is het systeem opgesplitst in functionele modules?
+    maturity_level: 2
+    explanation: Eerste stap richting componenten die individueel gereleased kunnen
+      worden. Modulaire opzet geeft een duidelijke structuur weer met eigen verantwoordelijkheden.
+  - question: Zijn er contracten voor API's duidelijk beschreven?
+    maturity_level: 2
+    explanation: De contracten voor API's zijn relevant voor b.v. testers en afnemers
+  - question: Wordt er API versiemanagement uitgevoerd?
+    maturity_level: 2
+    explanation: Wordt bijgehouden welke versies van een API in gebruik zijn? Is bekend
+      wie de afnemers van een API zijn?
+  - question: Is er een beleid om API's uit te faseren?
+    maturity_level: 2
+    explanation: Zijn API's altijd backwards compatible? Is bekend wie de afnemers
+      zijn van een API (wanneer ze uitgefaseerd worden)?
+  - question: Vind er library-beheer plaats?
+    maturity_level: 2
+    explanation: Is iedere library backwards compatible? Worden libraries via API's
+      aangesproken? Is bekend wie de afnemers zijn van Libraries?
+  - question: Worden wijzigingen in applicatie-databases onder version control uitgevoerd?
+    maturity_level: 2
+    explanation: Bij issues bestaat de mogelijkheid om een oude versie met de huidige
+      versie te vergelijken.
+  - question: Worden features zo ingericht dat het in alle SWDL fases (inclusief PROD)  te
+      monitoren is?
+    maturity_level: 3
+    explanation: Enabler voor een team om verantwoordelijkheid te nemen
+  - question: Wordt de configuratie van de applicatie bijgehouden? In source control?
+    maturity_level: 3
+    explanation: Configuratie als code behandeld? (Source control)
+  - question: Wordt er meestal op de trunk ontwikkeld door alle ontwikkelaars?
+    maturity_level: 3
+    explanation: We willen idealiter alleen werken op trunk, niet op aparte branches.
+      In het geval van grotere wijzigingen kan eerst een dunne abstractielaag worden
+      ingebouwd.
+  - question: Is het mogelijk om features te verbergen (uitschakelen) die bijvoorbeeld
+      nog niet volledig klaar zijn, of nog niet voldoende getest?
+    maturity_level: 3
+    explanation: 'Er kan halve code op PROD staan, zolang deze b.v. d.m.v. feature
+      switches niet wordt aangeroepen. Let op: Soms staat wetgeving dode code op PROD
+      niet toe. (Automotive)'
+  - question: Zijn modules veranderd in individueel-deploybare componenten?
+    maturity_level: 3
+    explanation: Componenten zijn het volgende stadium van modules. Ze kunnen individueel
+      gedeployed worden.
+  - question: Is er een volledig component-gebaseerde architectuur?
+    maturity_level: 4
+    explanation: Geen monoliet
+  - question: Worden metrics uit de applicatie gebruikt om te acteren op geïmplementeerde
+      business waarde?
+    maturity_level: 4
+    explanation: De applicatie heeft een systeem om real-time de business value te
+      meten. Er wordt geacteerd op deze metingen. *) Het acteren-deel misschien naar
+      cultuur?
+  - question: Is, bij een eventueel incident, de infrastructuur eenvoudig opnieuw
+      op te zetten, bijvoorbeeld met een docker platform en/of VM's?
+    maturity_level: 5
+    explanation: Wordt infrastructuur als code behandeld?
+  maturity_levels: {}
+- id: build_deploy
+  name: Build & Deploy
+  score: 16.7
+  questions:
+  - question: Staat de code base onder versiebeheer?
+    maturity_level: 1
+    explanation: Mogelijkheid om terug te zoeken waar iets is mis gegaan
+  - question: Zijn builds gescript?
+    maturity_level: 1
+    explanation: Vooral een check op de technische straat en die mappen op wat er
+      mogelijk is geggeven het product wat ontwikkeld wordt.
+  - question: Zijn builds gescheduled?
+    maturity_level: 1
+    explanation: Scheduling is goed, maar commit-hooks is nog beter.
+  - question: Bestaan er (een paar) deployment scripts die worden gebruikt?
+    maturity_level: 1
+    explanation: Automatiseren voorkomt fouten, herhaalbaar proces.
+  - question: Is er een dedicated build server?
+    maturity_level: 1
+    explanation: Niet afhankelijk zijn van b.v. een ontwikkelaar
+  - question: Is het (handmatige?) deploy-proces gedocumenteerd?
+    maturity_level: 2
+    explanation: Niet afhankelijk van kennis bij 1 persoon in zijn/haar hoofd
+  - question: Wordt er gepolld voor builds?
+    maturity_level: 2
+    explanation: Periodiek naar PROD
+  - question: Worden builds opgeslagen?
+    maturity_level: 2
+    explanation: Mogelijkheid om in geval van grote incidenten PROD opnieuw op te
+      bouwen
+  - question: Worden builds (handmatig) getagd en van versienummer voorzien?
+    maturity_level: 2
+    explanation: Builds herkennen
+  - question: Eerste stappen naar gestandaardiseerde deploys gezet?
+    maturity_level: 2
+    explanation: Standaards zorgen voor minder fouten en maakt automatiseren eenvoudiger.
+  - question: Wordt de build automatisch gestart op basis van een trigger (b.v. commit)?
+    maturity_level: 3
+    explanation: Automatische triggers halen de afhankelijkheid van mensen er uit
+  - question: Gebeurt het taggen en toevoegen van versienummers aan builds automatisch?
+    maturity_level: 3
+    explanation: Automatische tags en versienummers halen de afhankelijkheid van mensen
+      er uit.
+  - question: Zijn database wijzigingen geautomatiseerd? (b.v. anonimiseren PROD data
+      voor TEST)
+    maturity_level: 3
+    explanation: ''
+  - question: Kan een enkele build overal worden gedeployd, ongeacht de omgeving?
+    maturity_level: 3
+    explanation: Geen verschillende versies van builds die afhankelijk zijn van omgevingen.
+  - question: Config wijzigingen zijn geautomatiseerd (b.v. app server)
+    maturity_level: 3
+    explanation: ''
+  - question: Is het build/deploy proces voor alle omgevingen gelijk? (Los van b.v.
+      anonimiseren)
+    maturity_level: 3
+    explanation: ''
+  - question: Is de keten in kaart gebracht mbv een VSM voor het deployment proces?
+    maturity_level: 3
+    explanation: ''
+  - question: Wordt er volgens Behavior Driven Development gewerkt? (Eerst het gewenste
+      gedrag omschrijven in systeemtesten en/of acceptatie-testen in Gherkin-syntax,
+      vervolgens op basis daarvan code schrijven)
+    maturity_level: 4
+    explanation: ''
+  - question: Een basis pipeline bestaat de hele weg t/m PROD
+    maturity_level: 4
+    explanation: ''
+  - question: Is er Zero downtime bij deploys?
+    maturity_level: 4
+    explanation: ''
+  - question: Zijn er meerdere build machines en wordt de load ook over de systemen
+      verdeeld?
+    maturity_level: 4
+    explanation: ''
+  - question: Zijn er volledig geautomatiseerde database deploys
+    maturity_level: 4
+    explanation: ''
+  - question: Is er een volledige build bakery? (Complete VM's worden volledig automatisch
+      samengesteld en via de pipeline automatisch gedeployd.)
+    maturity_level: 5
+    explanation: ''
+  - question: Zijn er zero-touch continuous deployments?
+    maturity_level: 5
+    explanation: volledig automatisch
+  maturity_levels: {}
+- id: test_verificatie
+  name: Test & Verificatie
+  score: 0
+  questions:
+  - question: Worden unit testen geautomatiseerd uitgevoerd?
+    maturity_level: 1
+    explanation: ''
+  - question: Is er een aparte test omgeving (OTAP of b.v. via namespaces, VM's en/of
+      branche op versiebeheer) gescheiden van PROD?
+    maturity_level: 1
+    explanation: Geen testen uitvoeren op PROD
+  - question: 'Zijn de belangrijkste delen gedekt door automatische integratietesten?
+      (Zie eerdere vraag/voorwaarde: Is de architectuur op hoofdlijnen vastgelegd?)'
+    maturity_level: 2
+    explanation: Automatische integratietesten maken inzichtelijk wanneer belangrijke
+      functionaliteit omvalt
+  - question: Wordt de end-to-end testautomatisering getriggered door een commit en/of
+      merge naar master?
+    maturity_level: 3
+    explanation: Dit voorkomt veel problemen bij overgang naar andere omgevingen bv.
+      ontwikkelaar test zijn aanpassingen op localhost, dan gaat ie via merge naar
+      dev en zo verder tst, acc, prod. e2e testautomatisering zou zo ingericht moeten
+      worden dat de goede werking gewaarborgd word
+  - question: 'Zijn alle componenten gedekt door automatische component-testen? (Zie
+      eerdere vraag/voorwaarde: Is de architectuur op hoofdlijnen vastgelegd)'
+    maturity_level: 3
+    explanation: Testen volgens de testing-pyramide, waarbij de architectonische componenten
+      individueel worden getest
+  - question: Worden er risico-gebaseerde handmatige testen uitgevoerd naast automatische
+      checks? (Gestructureerd Exploratory testen)
+    maturity_level: 3
+    explanation: Met exploratory testen worden aspecten gevonden waar via een script
+      mogelijk niet aan gedacht is. Iedere keer dat er exploratory wordt getest wordt
+      een ander deel geraakt. Door dit uit te voeren leeft er een besef van kwaliteit.
+  - question: Wordt er volgens Test Driven Development gewerkt? (Eerst unit-, systeem-
+      en acceptatietesten schrijven, daarna de code implementeren, en daarna de code
+      verder optimaliseren waarbij de testen blijven slagen)
+    maturity_level: 3
+    explanation: TDD zorgt voor kwaliteitsbesef en eenduidig begrip van gewenste oplevering
+  - question: Worden er (enkele) geautomatiseerde acceptatietesten uitgevoerd?
+    maturity_level: 4
+    explanation: Acceptatietesten tonen aan of de gewenste functionaliteit is opgeleverd.
+      Als deze geautomatiseerd worden, zijn de acceptatiecriteria heel duidelijk.
+      Dit optimaliseert de flow door de pipeline.
+  - question: Worden er volledig geautomatiseerde performance testen uitgevoerd?
+    maturity_level: 4
+    explanation: Als het team non-functionals test is er besef van kwaliteit. Door
+      dit te automatiseren kan het binnen CI/CD worden opgenomen.
+  - question: is er sprake van shift-left testen? (Zoveel mogelijk afdekken in unit-
+      of component testen, liefst via TDD of BDD)
+    maturity_level: 4
+    explanation: Unit testen zijn het meest efficient. Door bij iedere test na te
+      denken of het lager in de testpyramide kan worden afgedekt wordt er efficiënter
+      gewerkt.
+  - question: Worden er volledig geautomatiseerde security testen uitgevoerd?
+    maturity_level: 4
+    explanation: Als het team non-functionals test is er besef van kwaliteit. Door
+      dit te automatiseren kan het binnen CI/CD worden opgenomen.
+  - question: Worden alle acceptatietesten volledig geautomatiseerd uitgevoerd?
+    maturity_level: 5
+    explanation: Acceptatietesten tonen aan of de gewenste functionaliteit is opgeleverd.
+      Als deze geautomatiseerd worden, zijn de acceptatiecriteria heel duidelijk.
+      Dit optimaliseert de flow door de pipeline.
+  maturity_levels: {}
+- id: informatie_rapportage
+  name: Informatie & Rapportage
+  score: 0
+  questions:
+  - question: Worden er (basis) metrics verzameld over het bouw- en deploy-proces?
+      (cycle-time, build time, etc) Wordt dit via (handmatige/automatische) rapportage
+      inzichtelijk gemaakt?
+    maturity_level: 1
+    explanation: Door data over de pipeline inzichtelijk te maken kan het verbeterd
+      worden.
+  - question: Zijn statistieken beschikbaar over testresultaten?
+    maturity_level: 2
+    explanation: Oude rapporten tonen een trend
+  - question: Wordt het build- en deploy-proces in de pipeline gemeten? (Begin tot
+      eind in pipeline)
+    maturity_level: 2
+    explanation: Door data over de pipeline inzichtelijk te maken kan het verbeterd
+      worden.
+  - question: Wordt er statische code analyse uitgevoerd?
+    maturity_level: 2
+    explanation: Gebruik bv SonarQube / SonarCloud
+  - question: Wordt delivery performance regelmatig gemeten, op basis van metrics
+      (burn down, voorspelbaarheid)
+    maturity_level: 2
+    explanation: Door delivery performance regelmatig te meten weten we of teams optimaal
+      gebruik maken van de pipelines. Het is niet effectief om een snelweg aan te
+      leggen als de teams alleen langzaam verkeer opleveren.
+  - question: Is er zicht op trends met betrekking tot code kwaliteit?
+    maturity_level: 2
+    explanation: Zichtbare trends kunnen een enabler zijn tot verbetering
+  - question: Is er continue transparantie m.b.t. code kwaliteit? Kan iedereen op
+      elk moment zien wat de trends daarin zijn?
+    maturity_level: 3
+    explanation: Door continue te meten komen problemen vroeg aan het licht en kunnen
+      herleid worden naar een specifieke commit.
+  - question: Is er een gestandaardiseerd informatiemodel, dat b.v. een eenduidige
+      beschrijving geeft van ieder component of de relatie tussen componenten?
+    maturity_level: 3
+    explanation: Een informatiemodel is een enabler om te kunnen voorspellen hoe een
+      wijziging zich zal gaan gedragen.
+  - question: Wordt er performance en load gemeten en gerapporteerd?
+    maturity_level: 3
+    explanation: Rapportage hoe het product in PROD zich gerdaagt (performance en
+      load) kan input bieden om verbeteringen aan te brengen (enabler)
+  - question: Is traceability van testen naar specificaties/requirements ingebouwd
+      als concept in de pipeline?
+    maturity_level: 3
+    explanation: Iedere requirement is traceerbaar naar requirements en uitkomsten
+      van testen
+  - question: Is Graphing as a Service  beschikbaar
+    maturity_level: 4
+    explanation: Een team specialiseert in het maken van grafieken, bijvoorbeeld om
+      trends te signaleren, en om business waarde te meten.
+  - question: Is er terugkoppeling van PROD data naar test analyse, om nieuwe testen
+      te maken?
+    maturity_level: 4
+    explanation: Situaties die in PROD optreden moeten door nieuwe testen afgedekt
+      worden.
+  - question: Bestaat een systeem om de business value vanuit PROD te verifiëren?
+    maturity_level: 4
+    explanation: Bijvoorbeeld bij een online retailer meten welke variant de meeste
+      conversie oplevert. Dit kan dan weer teruggekoppeld worden aan ontwerp. (Enabler)
+  - question: Worden test-trends gebruikt om kwaliteit van het product te verhogen?
+      (Bepaalde gebieden die vaak falende testen hebben kunnen ge-refactored worden)
+    maturity_level: 4
+    explanation: Verslechterende trends zijn een indicatie waar refactoring nodig
+      kan zijn.
+  - question: Is security ingebouwd als concept in de pipeline?
+    maturity_level: 5
+    explanation: 'Het integreren van security in Continuous Integration/Continuous
+      Deployment (CI/CD) pipelines is van cruciaal belang om ervoor te zorgen dat
+      de ontwikkelde software veilig is. Hier zijn enkele best practices en stappen
+      die je kunt overwegen om security in te bouwen in je CI/CD-pipeline:
+
+
+      Automated Security Testing:
+
+
+      Voer geautomatiseerde security tests uit als onderdeel van je CI/CD-pipeline.
+      Dit omvat statische code-analyse (SAST), dynamische applicatiebeveiligingstests
+      (DAST), en softwarecompositieanalyse (SCA). Deze tests identificeren kwetsbaarheden
+      en beveiligingsproblemen in de code, afhankelijkheden en de runtime-omgeving.
+
+      Container Security Scanning:
+
+
+      Als je gebruikmaakt van containerization (bijv. Docker), voer dan regelmatig
+      scans uit op je container images. Controleer op bekende kwetsbaarheden en zorg
+      ervoor dat je alleen vertrouwde en bijgewerkte afbeeldingen gebruikt.
+
+      Infrastructure as Code (IaC) Security:
+
+
+      Als je gebruikmaakt van IaC-tools zoals Terraform of Ansible, voer dan security-analyses
+      uit op je infrastructuurcode. Controleer configuratiebestanden op beveiligingsrisico''s
+      en misconfiguraties.
+
+      Dependency Scanning:
+
+
+      Houd je afhankelijkheden up-to-date en voer regelmatig scans uit om bekende
+      kwetsbaarheden in de gebruikte bibliotheken en frameworks te identificeren.
+
+      Secrets Management:
+
+
+      Beheer gevoelige informatie, zoals API-sleutels en wachtwoorden, veilig. Gebruik
+      een veilige opslagplaats voor geheimen en integreer deze veilig in je CI/CD-pipeline.
+
+      Access Control and Least Privilege:
+
+
+      Beheer toegangsrechten tot je CI/CD-pipeline zorgvuldig. Gebruik het principe
+      van het minste privilege, zodat alleen de noodzakelijke personen toegang hebben
+      tot de gevoelige delen van de pipeline.
+
+      Security Auditing:
+
+
+      Implementeer logging en monitoring in je CI/CD-pipeline om verdachte activiteiten
+      te detecteren. Analyseer deze logs regelmatig en reageer op eventuele beveiligingsincidenten.
+
+      Manual Security Reviews:
+
+
+      Hoewel geautomatiseerde tests essentieel zijn, moeten ook periodieke handmatige
+      beoordelingen plaatsvinden om beveiligingsrisico''s te identificeren die mogelijk
+      niet door geautomatiseerde tools worden gedekt.
+
+      Secure Deployment:
+
+
+      Implementeer veilige deploymentpraktijken. Zorg ervoor dat de juiste controles
+      en validaties worden uitgevoerd tijdens het implementatieproces.
+
+      Education and Training:
+
+
+      Zorg ervoor dat het ontwikkelteam bekend is met beveiligingspraktijken. Bied
+      trainingen en bewustwordingsprogramma''s aan om het begrip van beveiligingsrisico''s
+      te vergroten.
+
+      Implementeer deze stappen als onderdeel van je CI/CD-pipeline om de beveiliging
+      van je softwareontwikkeling en implementatie te waarborgen. Dit helpt bij het
+      vroegtijdig identificeren en oplossen van beveiligingsproblemen en draagt bij
+      aan een algehele veilige ontwikkelingspraktijk.'
+  - question: 'Wordt PROD data gebruikt om het product in DEV te verbeteren? (Bijvoorbeeld:
+      In PROD worden veel HTTP errors in bepaald gebied gezien, deze info kan worden
+      teruggekoppeld naar DEV)'
+    maturity_level: 5
+    explanation: Constante input vanuit PROD om het ontwikkel proces bij te sturen
+  - question: Wordt PROD data gebruikt om grenzen binnen de organisatie te overschrijden
+      en trends binnen de organisatie te herkennen? Wordt daar ook op geacteerd?
+    maturity_level: 5
+    explanation: Vooral een check op de technische straat en die mappen op wat er
+      mogelijk is geggeven het product wat ontwikkeld wordt.
+  maturity_levels: {}
+building_blocks:
+  Kwaliteit: 8
+  Structuur, backlogs, prioriteiten, mandaat: 10
+  Architectuur: 12
+  Documentatie: 11
+  Rollen, verantwoordelijkheden, teams: 13
+  Datagedreven: 12
+  Techniek / Infra: 19
+  Lerende organisatie, verbeteren: 20
+  Processen: 26
+  Agile cultuur, iteratief werken: 51
+  Introductie CI/CD: 0
+  'Aantal bouwblokken:': 11

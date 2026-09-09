@@ -123,11 +123,102 @@ class KnowledgeTools:
             "recommendations": recommendations,
         }
 
+    async def cicd_readiness_scan(self, project: str, answers: dict[str, str] | None = None) -> dict:
+        """Run a CI/CD Readiness Scan assessment.
+
+        Args:
+            project: Project name
+            answers: Optional dict mapping question text (or index) to "ja"/"nee".
+                     If None, returns the full question set for manual assessment.
+        """
+        data = self._load_yaml("cicd_readiness")
+        domains = data.get("domains", [])
+
+        if not answers:
+            # Return the full scan template
+            result = {
+                "project": project,
+                "framework": "CI/CD Readiness Scan MVP2",
+                "total_questions": sum(len(d.get("questions", [])) for d in domains),
+                "domains": [],
+                "message": "No answers provided. Return answers as a dict mapping question text to 'ja'/'nee'.",
+            }
+            for domain in domains:
+                result["domains"].append({
+                    "id": domain["id"],
+                    "name": domain["name"],
+                    "question_count": len(domain.get("questions", [])),
+                    "questions": [
+                        {"index": i, "question": q["question"], "maturity_level": q["maturity_level"]}
+                        for i, q in enumerate(domain.get("questions", []))
+                    ],
+                })
+            return result
+
+        # Score each domain
+        domain_scores = {}
+        domain_details = {}
+        for domain in domains:
+            qs = domain.get("questions", [])
+            correct = 0
+            total = len(qs)
+            max_level = 0
+            details = []
+            for i, q in enumerate(qs):
+                answer = answers.get(q["question"], answers.get(str(i), None))
+                if answer:
+                    is_correct = answer.lower() in ("ja", "yes", "true", "1")
+                    if is_correct:
+                        correct += 1
+                        max_level = max(max_level, q["maturity_level"])
+                    details.append({
+                        "question": q["question"],
+                        "answer": answer,
+                        "correct": is_correct,
+                        "maturity_level": q["maturity_level"],
+                    })
+            score = round((correct / total) * 100, 1) if total > 0 else 0
+            domain_scores[domain["name"]] = score
+            domain_details[domain["name"]] = {
+                "score": score,
+                "correct": correct,
+                "total": total,
+                "max_maturity_level": max_level,
+                "details": details,
+            }
+
+        overall = round(sum(domain_scores.values()) / len(domain_scores), 1) if domain_scores else 0
+        building_blocks = data.get("building_blocks", {})
+
+        return {
+            "project": project,
+            "framework": "CI/CD Readiness Scan MVP2",
+            "overall_score": overall,
+            "domain_scores": domain_scores,
+            "domain_details": domain_details,
+            "building_blocks": building_blocks,
+            "recommendations": self._cicd_readiness_recommendations(domain_scores),
+        }
+
+    def _cicd_readiness_recommendations(self, domain_scores: dict[str, float]) -> list[str]:
+        """Generate recommendations based on CI/CD readiness scores."""
+        recs = []
+        for domain, score in sorted(domain_scores.items(), key=lambda x: x[1]):
+            if score < 30:
+                recs.append(f"[CRITICAL] {domain}: Score {score}% — basisvereisten ontbreken, start met fundament")
+            elif score < 60:
+                recs.append(f"[HIGH] {domain}: Score {score}% — verdere uitbreiding nodig voor stabiele CI/CD")
+            elif score < 80:
+                recs.append(f"[MEDIUM] {domain}: Score {score}% — goed bezig, focus op optimalisatie")
+            else:
+                recs.append(f"[OK] {domain}: Score {score}% — volwassen niveau bereikt")
+        return recs
+
     async def framework_lookup(self, framework: str, topic: str | None = None) -> dict:
         """Look up information about a quality framework."""
         result = self._lookup_framework(framework, topic)
         if result is None:
-            return {"error": f"Framework '{framework}' not found", "available": ["iso25010", "tmmi"]}
+            return {"error": f"Framework '{framework}' not found", "available": ["iso25010", "tmmi", "cicd_readiness"]}
         return result
 
     async def generate_quality_report(
