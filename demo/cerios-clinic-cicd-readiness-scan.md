@@ -12,6 +12,23 @@
 | Test & Verificatie | 41.7% | Beginner |
 | Informatie & Rapportage | 41.2% | Beginner |
 
+## Sterke punten
+
+- **Git + CI/CD pipeline** met 14 workflows (unit tests, SAST, DAST, performance, Docker publish)
+- **Code kwaliteit**: ESLint, Prettier, TypeCheck, CodeQL, Stryker mutation testing
+- **Security**: OWASP ZAP DAST scans, CodeQL SAST
+- **Performance**: k6 load/stress/spike tests
+- **Docker**: Volledig gecontainerd, images op GHCR
+- **Documentatie**: Uitgebreide README, DEVELOPMENT.md, TEST-AUTOMATION.md
+
+## Aandachtspunten
+
+- **Test dekking**: Slechts 7 test files in 13 packages — geen integratie/E2E tests
+- **PROD monitoring**: Geen terugkoppeling van productie data naar development
+- **Business value verificatie**: Geen metrics voor klanttevredenheid/gebruik
+- **Zero downtime deploys**: Niet geïmplementeerd
+- **Traceability**: Geen koppeling testen → requirements
+
 ## Recommendations
 
 - [HIGH] Informatie & Rapportage: Score 41.2% — verdere uitbreiding nodig voor stabiele CI/CD
