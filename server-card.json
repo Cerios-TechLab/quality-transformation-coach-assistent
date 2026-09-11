@@ -1,6 +1,6 @@
 {
   "name": "quality-transformation-coach-mcp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "Quality Transformation Coach MCP Server",
   "description": "MCP server for software quality transformation coaching \u2014 15 tools for code analysis (complexity, coverage, test patterns, flaky tests), issue/defect analysis (trends, hotspots, root causes), CI/CD health (readiness scan, pipeline status, test results, quality gates), and knowledge/maturity (TMMi assessments, ISO 25010 lookup, quality reporting). Embedded knowledge base with ISO 25010, TMMi, test patterns, quality gates, and recommendations.",
   "tools": [

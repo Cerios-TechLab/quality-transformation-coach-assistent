@@ -2,7 +2,7 @@
   "manifest_version": "0.4",
   "name": "quality-transformation-coach-mcp",
   "display_name": "Quality Transformation Coach MCP Server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MCP server for software quality transformation coaching — 14 tools for code analysis, CI/CD health, defect trends, maturity assessments (TMMi/ISO 25010), quality gates, and reporting.",
   "long_description": "A knowledge-based MCP server for software quality transformation, providing tools for both the quality coach (overviews, maturity assessments, reporting) and the development/test team (code analysis, CI/CD insights, test support).",
   "author": {
