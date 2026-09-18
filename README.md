@@ -1,6 +1,6 @@
 # Quality Transformation Coach MCP Server
 
-[![smithery badge](https://smithery.ai/servers/djsteavy/quality-transformation-coach-mcp/badge)](https://smithery.ai/servers/djsteavy/quality-transformation-coach-mcp)
+[![smithery status](https://img.shields.io/endpoint?url=https://api.smithery.ai/mcp/servers/djsteavy/quality-transformation-coach-mcp/status.json)](https://smithery.ai/servers/djsteavy/quality-transformation-coach-mcp)
 
 Een MCP-server die als assistent dient voor software quality transformation — bedoeld voor zowel de quality transformation coach (overzicht, advisering, maturity assessments) als het development/test team (hands-on kwaliteitsanalyse, testondersteuning, CI/CD-inzichten).
 
