@@ -4,30 +4,6 @@
 
 Een MCP-server die als assistent dient voor software quality transformation — bedoeld voor zowel de quality transformation coach (overzicht, advisering, maturity assessments) als het development/test team (hands-on kwaliteitsanalyse, testondersteuning, CI/CD-inzichten).
 
-## Precheck: OpenCode via curl
-
-Deze MCP-server is bedoeld als OpenCode-integratie. Voordat je hem installeert,
-zorg ervoor dat OpenCode geïnstalleerd is en bereikbaar is. OpenCode wordt vaak
-geïnstalleerd met `curl` en staat **niet** standaard op `PATH` (bijv. het landt in
-`/root/.opencode/bin/opencode`). De MCP-server vindt het niet tenzij je
-`OPENCODE_BIN` er naar wijst:
-
-```bash
-# installeer OpenCode (curl) — let op waar het landt
-curl -fsSL https://opencode.ai/install | sh
-# /root/.opencode/bin/opencode  (of vergelijkbaar, afhankelijk van de installer)
-
-# wijs de daemon/server waar hij het vindt
-export OPENCODE_BIN=/root/.opencode/bin/opencode
-```
-
-Als `OPENCODE_BIN` niet is gezet, valt het systeem terug op `opencode` op `PATH` en
-de integratie faalt met "executable not found" bij de eerste aanroep. Verificeer:
-
-```bash
-test -x "$OPENCODE_BIN" && echo "ok" || echo "OPENCODE_BIN niet uitvoerbaar"
-```
-
 ## Functionaliteiten
 
 De server biedt 15 tools verdeeld over 4 categorieën:
