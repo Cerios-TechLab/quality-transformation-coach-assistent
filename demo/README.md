@@ -8,6 +8,8 @@ Voorbeeld-rapporten gegenereerd door de Quality Transformation Coach MCP Server.
 |---|---|
 | `cerios-clinic-quality-report.md` | Maturity Assessment Level 2 (Managed), 68.5% coverage, 82% CI/CD |
 | `gateway-quality-report.md` | Maturity Assessment Level 2 (Managed), 42% coverage, 95% CI/CD |
+| `cerios-clinic-cicd-readiness-scan.md` | CI/CD Readiness Scan MVP2, 58.6% overall |
+| `cerios-clinic-ai-readiness-scan.md` | AI Readiness Scan MVP1, 6.7% overall |
 
 ## Hoe genereren
 
