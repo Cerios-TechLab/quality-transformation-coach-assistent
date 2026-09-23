@@ -193,6 +193,70 @@
       }
     },
     {
+      "name": "cicd_readiness_scan",
+      "description": "Run a CI/CD Readiness Scan assessment with 102 questions across 5 domains.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project name"
+          },
+          "answers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional dict mapping question text to 'ja'/'nee'.\n     If None, returns the full question set for manual assessment."
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "ai_readiness_scan",
+      "description": "Run an AI Readiness Scan assessment with 60 questions across 5 AI domains.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project name"
+          },
+          "answers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional dict mapping question text to 'ja'/'nee'.\n     If None, returns the full question set for manual assessment."
+          }
+        },
+        "required": [
+          "project"
+        ],
+        "type": "object"
+      }
+    },
+    {
       "name": "quality_gate_check",
       "description": "Check if quality gates are met for a project.",
       "inputSchema": {

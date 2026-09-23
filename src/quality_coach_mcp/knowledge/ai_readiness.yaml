@@ -1,0 +1,243 @@
+framework: AI Readiness Scan
+version: MVP1
+description: AI Readiness Scan framework met 5 domeinen, 60 vragen en 9 bouwblokken
+  voor het meten van AI volwassenheid (strategie, data, modelontwikkeling, evaluatie
+  en monitoring).
+domains:
+- id: strategie_governance
+  name: Strategie & Governance
+  score: 0
+  questions:
+  - question: Is er een AI-visie of AI-strategie op organisatieniveau vastgesteld?
+    maturity_level: 1
+    explanation: zonder expliciete visie ontstaat wildgroei aan ad-hoc AI-initiatieven
+  - question: Is er expliciet eigenaarschap belegd voor AI-initiatieven?
+    maturity_level: 1
+    explanation: ieder AI-initiatief heeft een verantwoordelijke die aanspreekbaar is
+  - question: Worden AI-use cases geïnventariseerd en geprioriteerd op businesswaarde?
+    maturity_level: 2
+    explanation: voorkomt dat er geëxperimenteerd wordt zonder helder doel
+  - question: Is er een ethisch kader of AI-gedragscode voor verantwoorde AI vastgesteld?
+    maturity_level: 2
+    explanation: uitgangspunten voor transparantie, eerlijkheid en menselijke controle
+  - question: Wordt de risicoclassificatie van AI-toepassingen uitgevoerd (bijvoorbeeld
+      EU AI Act hoog-risico)?
+    maturity_level: 3
+    explanation: bepalen welke toepassingen extra eisen stellen aan menselijk toezicht
+      en documentatie
+  - question: Is er een AI-governance-board of stuurgroep met business, IT, legal en
+      ethiek?
+    maturity_level: 3
+    explanation: besluitvorming over AI-initiatieven op het juiste niveau
+  - question: Worden AI-rollen (AI-owner, datascientist, MLOps) expliciet toegewezen?
+    maturity_level: 3
+    explanation: heldere verantwoordelijkheden over de hele levenscyclus van een model
+  - question: Worden AI-initiatieven beoordeeld op businesscase en maatschappelijke
+      impact?
+    maturity_level: 4
+    explanation: investeringen in AI worden onderbouwd en gevolgd op opbrengst
+  - question: Is er een formeel AI-impact-assessment (privacy, ethiek, juridisch) vóór
+      livegang?
+    maturity_level: 4
+    explanation: risico's worden vóór ingebruikname in kaart gebracht en beheerst
+  - question: Wordt AI-personeel (skilling, training) structureel ontwikkeld?
+    maturity_level: 4
+    explanation: de organisatie bouwt duurzame AI-capaciteit in plaats van afhankelijk
+      te zijn van incidentele experts
+  - question: Worden AI-beslissingen periodiek geëvalueerd en bijgestuurd op basis
+      van geleerde lessen en incidenten?
+    maturity_level: 5
+    explanation: lerende organisatie die AI-aanpak continu verbetert
+  - question: Is de organisatie in staat AI-toepassingen blijvend in lijn te brengen
+      met wet- en regelgeving (AI Act, AVG)?
+    maturity_level: 5
+    explanation: compliance wordt onderhouden bij wijzigende wetgeving en nieuwe toepassingen
+  maturity_levels: {}
+- id: data_infrastructuur
+  name: Data & Infrastructuur
+  score: 0
+  questions:
+  - question: Is bekend welke data beschikbaar is voor AI-toepassingen (datainventarisatie)?
+    maturity_level: 1
+    explanation: je kunt pas AI bouwen als je weet welke data er is en waar die vandaan
+      komt
+  - question: Wordt datakwaliteit (compleetheid, juistheid, actualiteit) gemeten?
+    maturity_level: 1
+    explanation: inzicht in datakwaliteit bepaalt de betrouwbaarheid van het model
+  - question: Is er data-governance met duidelijke data-eigenaren?
+    maturity_level: 2
+    explanation: helder wie verantwoordelijk is voor welke dataset
+  - question: Worden datasets versiebeheerd zodat experimenten reproduceerbaar zijn?
+    maturity_level: 2
+    explanation: zelfde data + zelfde code = zelfde resultaat
+  - question: Wordt data gepseudonimiseerd of geanonimiseerd waar nodig (AVG)?
+    maturity_level: 3
+    explanation: privacybescherming als voorwaarde voor datagebruik
+  - question: Zijn er afspraken over dataretentie en -verwijdering?
+    maturity_level: 2
+    explanation: ook trainingsdata en prompts vallen onder bewaartermijnen
+  - question: Is er een geautomatiseerde data-pipeline voor trainings- en validatiedata?
+    maturity_level: 3
+    explanation: herhaalbaar en zonder handmatige tussenstappen
+  - question: Is er voldoende compute-infrastructuur (CPU/GPU) voor modelontwikkeling?
+    maturity_level: 2
+    explanation: zonder capaciteit blijven experimenten steken op niche-experts
+  - question: Is er een experimenteeromgeving gescheiden van PROD?
+    maturity_level: 3
+    explanation: modellen en data worden veilig ontwikkeld buiten productie
+  - question: Wordt datagebruik gemonitord op bias en representativiteit voor doelgroepen?
+    maturity_level: 4
+    explanation: onevenwichtige data leidt tot oneerlijke uitkomsten
+  - question: Wordt feature engineering centraal beheerd (feature store)?
+    maturity_level: 4
+    explanation: hergebruik en consistentie van features tussen teams
+  - question: Is de data-infrastructuur schaalbaar en worden de kosten bewaakt?
+    maturity_level: 5
+    explanation: opschalen van AI gaat gepaard met beheersbare en voorspelbare kosten
+  maturity_levels: {}
+- id: modelontwikkeling_experimentatie
+  name: Modelontwikkeling & Experimentatie
+  score: 0
+  questions:
+  - question: Wordt vastgelegd welk AI-probleem wordt opgelost en wanneer dit als succes
+      geldt?
+    maturity_level: 1
+    explanation: helder doel vooraf voorkomt doelloze experimenten
+  - question: Worden AI-experimenten systematisch geregistreerd (experiment tracking)?
+    maturity_level: 2
+    explanation: inzicht in wat er is geprobeerd en wat wel of niet werkte
+  - question: Worden modellen en prompt-versies onder versiebeheer beheerd?
+    maturity_level: 2
+    explanation: terug kunnen naar een eerdere werkende versie
+  - question: Worden datasets voor training en evaluatie beheerd met bekende herkomst?
+    maturity_level: 3
+    explanation: traceerbaarheid van data naar herkomst en gebruik
+  - question: Is er een afgewogen aanpak voor modelkeuze (open-source versus commerciële
+      modellen, foundation models)?
+    maturity_level: 3
+    explanation: keuze wordt onderbouwd op kwaliteit, kosten, risico en vendorlock-in
+  - question: Wordt prompt engineering als discipline toegepast met gedocumenteerde
+      prompts?
+    maturity_level: 3
+    explanation: prompts worden beheerd, getest en verbeterd als onderdeel van het product
+  - question: Worden modellen gereproduceerd met vaste configuratie, seeds en omgeving?
+    maturity_level: 4
+    explanation: reproduceerbaarheid als basis voor betrouwbare AI
+  - question: Is er een modelregistratie of modelcatalogus met metadata?
+    maturity_level: 4
+    explanation: overzicht van modellen, versies, eigenaar en status
+  - question: Wordt een AI-model vergeleken met een baseline (bestaande aanpak of eenvoudig
+      model)?
+    maturity_level: 4
+    explanation: aantonen dat AI daadwerkelijk meerwaarde biedt ten opzichte van de
+      huidige situatie
+  - question: Worden AI-modellen ontwikkeld in korte iteraties met feedback van gebruikers?
+    maturity_level: 4
+    explanation: snel leren en bijsturen op basis van gebruikerservaring
+  - question: Wordt per toepassing de juiste AI-techniek gekozen (LLM, klassiek ML,
+      regelgebaseerd)?
+    maturity_level: 5
+    explanation: zwaarste techniek is niet altijd de beste keuze
+  - question: Worden AI-experimenten gevalideerd door domeinexperts en gebruikers?
+    maturity_level: 5
+    explanation: technische werking alleen is onvoldoende; de output moet in de praktijk
+      kloppen
+  maturity_levels: {}
+- id: evaluatie_kwaliteit
+  name: Evaluatie & Kwaliteit
+  score: 0
+  questions:
+  - question: Worden AI-modellen geëvalueerd met heldere metrieken (accuracy, precision,
+      recall, F1)?
+    maturity_level: 1
+    explanation: objectieve maatstaven voor modelkwaliteit
+  - question: Wordt de kwaliteit van LLM-output beoordeeld (relevantie, coherentie,
+      hallucinaties)?
+    maturity_level: 2
+    explanation: kwaliteit van gegenereerde tekst vraagt specifieke beoordelingscriteria
+  - question: Zijn er acceptatiecriteria vastgesteld vóór een model naar PROD gaat?
+    maturity_level: 2
+    explanation: duidelijk wanneer een model goed genoeg is
+  - question: Wordt een evaluatiedataset gebruikt die losstaat van trainingsdata?
+    maturity_level: 3
+    explanation: voorkomt overschatting van kwaliteit door overfitting
+  - question: Wordt er getest op bias en eerlijkheid (geslacht, leeftijd, etniciteit)?
+    maturity_level: 3
+    explanation: oneerlijke uitkomsten worden actief opgespoord
+  - question: Worden uitzonderingen en randgevallen systematisch onderzocht?
+    maturity_level: 3
+    explanation: edge cases bepalen vaak het verschil tussen demo en productie
+  - question: Worden menselijke domeinexperts betrokken bij kwaliteitsbeoordeling van
+      output?
+    maturity_level: 3
+    explanation: menselijke beoordeling voor aspecten die metrieken niet vangen
+  - question: Wordt er getest op adversarial input en prompt-injectie (bij LLM)?
+    maturity_level: 4
+    explanation: modellen worden getest op pogingen om ze te manipuleren
+  - question: Worden hallucinaties en onzekerheid gemeten en beheerd (calibration)?
+    maturity_level: 4
+    explanation: het model weet aangeven wanneer het onzeker is
+  - question: Is er een geautomatiseerde evaluatie-pipeline (eval-sets in CI)?
+    maturity_level: 4
+    explanation: kwaliteit wordt automatisch getoetst bij iedere wijziging aan model,
+      prompt of data
+  - question: Worden modellen hertest na (her)training zodat regressie wordt opgemerkt?
+    maturity_level: 4
+    explanation: een verbetering mag geen andere kwaliteit breken
+  - question: Zijn er kwantitatieve én kwalitatieve drempels waarboven een model niet
+      mag live?
+    maturity_level: 5
+    explanation: stopcriteria zijn vooraf vastgesteld en worden gehandhaafd
+  maturity_levels: {}
+- id: monitoring_rapportage
+  name: Monitoring & Rapportage
+  score: 0
+  questions:
+  - question: Worden AI-modellen in PROD gemonitord op technische gezondheid (latency,
+      fouten)?
+    maturity_level: 2
+    explanation: storingen en vertragingen worden tijdig opgemerkt
+  - question: Wordt datadrift of conceptdrift gedetecteerd?
+    maturity_level: 3
+    explanation: veranderende invoer of context kan modelkwaliteit laten afnemen
+  - question: Wordt de performance van het model in PROD teruggekoppeld naar de ontwikkelteams?
+    maturity_level: 3
+    explanation: PROD-ervaringen voeden verbetering van het model
+  - question: Zijn er feedbackloops (gebruikersfeedback, annotaties) voor modelverbetering?
+    maturity_level: 3
+    explanation: signalen uit de praktijk worden gebruikt om het model te verbeteren
+  - question: Worden AI-uitkomsten gelogd zodat beslissingen traceerbaar zijn (audittrail)?
+    maturity_level: 3
+    explanation: achteraf vaststellen waarom een model een beslissing nam
+  - question: Is er een dashboard voor AI-prestaties toegankelijk voor stakeholders?
+    maturity_level: 3
+    explanation: transparante rapportage over hoe AI presteert
+  - question: Is er een rollbackprocedure bij een verslechterend model?
+    maturity_level: 4
+    explanation: snel terug naar een vorige versie bij kwaliteitsverlies
+  - question: Worden AI-kosten (compute, tokens) bewaakt en gerapporteerd?
+    maturity_level: 4
+    explanation: kosten van AI worden zichtbaar en beheerst
+  - question: Worden incidenten met AI-toepassingen geëvalueerd met root-cause-analyse?
+    maturity_level: 4
+    explanation: van symptoombestrijding naar structurele verbetering
+  - question: Wordt de businesswaarde van AI-toepassingen gemeten op bedrijfsresultaat?
+    maturity_level: 4
+    explanation: aantonen dat AI bijdraagt aan doelstellingen van de organisatie
+  - question: Wordt ingezet op continu verbeteren via geautomatiseerde retraining?
+    maturity_level: 5
+    explanation: het model blijft actueel zonder handmatige tussenkomst
+  - question: Is er transparante rapportage over AI-gebruik richting management en toezicht?
+    maturity_level: 5
+    explanation: verantwoording over AI-gebruik op bestuurlijk niveau
+  maturity_levels: {}
+building_blocks:
+  AI-strategie & visie: 10
+  Governance, ethiek & compliance: 12
+  Rollen & teams: 10
+  Data & datakwaliteit: 15
+  Infrastructuur & platform: 12
+  Modelontwikkeling & experimentatie: 15
+  Evaluatie & kwaliteit: 13
+  Monitoring & MLOps: 15
+  Datagedreven & rapportage: 10

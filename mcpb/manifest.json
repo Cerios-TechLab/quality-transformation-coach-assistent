@@ -3,7 +3,7 @@
   "name": "quality-transformation-coach-mcp",
   "display_name": "Quality Transformation Coach MCP Server",
   "version": "1.0.0",
-  "description": "MCP server for software quality transformation coaching — 14 tools for code analysis, CI/CD health, defect trends, maturity assessments (TMMi/ISO 25010), quality gates, and reporting.",
+  "description": "MCP server for software quality transformation coaching — 16 tools for code analysis, CI/CD health, defect trends, maturity assessments (TMMi/ISO 25010), readiness scans (CI/CD, AI), quality gates, and reporting.",
   "long_description": "A knowledge-based MCP server for software quality transformation, providing tools for both the quality coach (overviews, maturity assessments, reporting) and the development/test team (code analysis, CI/CD insights, test support).",
   "author": {
     "name": "Cerios TechLab",
@@ -64,6 +64,14 @@
     {
       "name": "test_result_summary",
       "description": "Get test results summary for a CI workflow run"
+    },
+    {
+      "name": "cicd_readiness_scan",
+      "description": "Run a CI/CD Readiness Scan assessment with 102 questions across 5 domains"
+    },
+    {
+      "name": "ai_readiness_scan",
+      "description": "Run an AI Readiness Scan assessment with 60 questions across 5 AI domains"
     },
     {
       "name": "quality_gate_check",

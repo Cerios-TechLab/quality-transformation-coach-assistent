@@ -132,13 +132,47 @@ class KnowledgeTools:
                      If None, returns the full question set for manual assessment.
         """
         data = self._load_yaml("cicd_readiness")
+        return self._run_readiness_scan(
+            project=project,
+            answers=answers,
+            data=data,
+            framework_label="CI/CD Readiness Scan MVP2",
+            goal="stabiele CI/CD",
+        )
+
+    async def ai_readiness_scan(self, project: str, answers: dict[str, str] | None = None) -> dict:
+        """Run an AI Readiness Scan assessment.
+
+        Args:
+            project: Project name
+            answers: Optional dict mapping question text (or index) to "ja"/"nee".
+                     If None, returns the full question set for manual assessment.
+        """
+        data = self._load_yaml("ai_readiness")
+        return self._run_readiness_scan(
+            project=project,
+            answers=answers,
+            data=data,
+            framework_label="AI Readiness Scan MVP1",
+            goal="betrouwbare en verantwoorde AI-toepassing",
+        )
+
+    def _run_readiness_scan(
+        self,
+        project: str,
+        answers: dict[str, str] | None,
+        data: dict,
+        framework_label: str,
+        goal: str,
+    ) -> dict:
+        """Shared readiness-scan engine for CI/CD and AI frameworks."""
         domains = data.get("domains", [])
 
         if not answers:
             # Return the full scan template
             result = {
                 "project": project,
-                "framework": "CI/CD Readiness Scan MVP2",
+                "framework": framework_label,
                 "total_questions": sum(len(d.get("questions", [])) for d in domains),
                 "domains": [],
                 "message": "No answers provided. Return answers as a dict mapping question text to 'ja'/'nee'.",
@@ -192,22 +226,22 @@ class KnowledgeTools:
 
         return {
             "project": project,
-            "framework": "CI/CD Readiness Scan MVP2",
+            "framework": framework_label,
             "overall_score": overall,
             "domain_scores": domain_scores,
             "domain_details": domain_details,
             "building_blocks": building_blocks,
-            "recommendations": self._cicd_readiness_recommendations(domain_scores),
+            "recommendations": self._readiness_recommendations(domain_scores, goal),
         }
 
-    def _cicd_readiness_recommendations(self, domain_scores: dict[str, float]) -> list[str]:
-        """Generate recommendations based on CI/CD readiness scores."""
+    def _readiness_recommendations(self, domain_scores: dict[str, float], goal: str) -> list[str]:
+        """Generate recommendations based on readiness scores, adapted for a goal."""
         recs = []
         for domain, score in sorted(domain_scores.items(), key=lambda x: x[1]):
             if score < 30:
                 recs.append(f"[CRITICAL] {domain}: Score {score}% — basisvereisten ontbreken, start met fundament")
             elif score < 60:
-                recs.append(f"[HIGH] {domain}: Score {score}% — verdere uitbreiding nodig voor stabiele CI/CD")
+                recs.append(f"[HIGH] {domain}: Score {score}% — verdere uitbreiding nodig voor {goal}")
             elif score < 80:
                 recs.append(f"[MEDIUM] {domain}: Score {score}% — goed bezig, focus op optimalisatie")
             else:

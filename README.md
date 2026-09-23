@@ -6,7 +6,7 @@ Een MCP-server die als assistent dient voor software quality transformation — 
 
 ## Functionaliteiten
 
-De server biedt 15 tools verdeeld over 4 categorieën:
+De server biedt 16 tools verdeeld over 5 categorieën:
 
 ### Code Analyse
 | Tool | Beschrijving |
@@ -28,8 +28,13 @@ De server biedt 15 tools verdeeld over 4 categorieën:
 |---|---|
 | `pipeline_health` | Analyseer CI/CD pipeline gezondheid (success rate, doorlooptijd) |
 | `test_result_summary` | Agregeer test results vanuit CI runs |
-| `cicd_readiness_scan` | Voer een CI/CD Readiness Scan uit (103 vragen, 5 domeinen) |
+| `cicd_readiness_scan` | Voer een CI/CD Readiness Scan uit (102 vragen, 5 domeinen) |
 | `quality_gate_check` | Controleer of kwaliteits gates behaald zijn |
+
+### AI Readiness
+| Tool | Beschrijving |
+|---|---|
+| `ai_readiness_scan` | Voer een AI Readiness Scan uit (60 vragen, 5 AI-domeinen) |
 
 ### Kennis & Maturity
 | Tool | Beschrijving |
@@ -134,6 +139,8 @@ De server bevat een embedded kennisbank met:
 - **Test Patterns** — Herkenbare patronen en anti-patterns
 - **Quality Gates** — Standaard criteria voor PR, release, sprint
 - **Recommendations** — Context-gevoelige verbeteradviezen
+- **CI/CD Readiness** — Maturitychecklist voor CI/CD-processen (102 vragen)
+- **AI Readiness** — Maturitychecklist voor AI-toepassing (60 vragen, 5 domeinen)
 
 Kennisbank-bestanden staan in `src/quality_coach_mcp/knowledge/` als YAML.
 
@@ -150,7 +157,7 @@ pytest tests/ -v
 
 ```
 src/quality_coach_mcp/
-├── server.py              # FastMCP server entry point (15 tools)
+├── server.py              # FastMCP server entry point (16 tools)
 ├── config.py              # Config loading
 ├── models/types.py        # Pydantic data models
 ├── tools/
@@ -166,7 +173,9 @@ src/quality_coach_mcp/
     ├── tmmi.yaml
     ├── test_patterns.yaml
     ├── quality_gates.yaml
-    └── recommendations.yaml
+    ├── recommendations.yaml
+    ├── cicd_readiness.yaml
+    └── ai_readiness.yaml
 ```
 
 ## Licentie
