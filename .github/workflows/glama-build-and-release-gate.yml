@@ -42,7 +42,7 @@ jobs:
             -v "$PWD/scripts/mcp-smoke.py:/app/scripts/mcp-smoke.py:ro" \
             --entrypoint python \
             quality-coach-mcp:ci \
-            scripts/mcp-smoke.py 15
+            scripts/mcp-smoke.py 16
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
