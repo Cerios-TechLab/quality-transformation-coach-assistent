@@ -56,7 +56,7 @@ class CICTools:
 
         adapter = CICDAdapter(self.config)
         result = await adapter.get_pipeline_health(github_ref)
-        return result.model_dump()
+        return result.model_dump(mode="json")
 
     async def test_result_summary(self, github_ref: str, run_id: int) -> dict:
         """Get test result summary for a specific workflow run."""
@@ -64,7 +64,7 @@ class CICTools:
 
         adapter = CICDAdapter(self.config)
         result = await adapter.get_test_results(github_ref, run_id)
-        return result.model_dump()
+        return result.model_dump(mode="json")
 
     async def quality_gate_check(
         self, github_ref: str, gate_id: str = "pull_request", metrics: dict | None = None
