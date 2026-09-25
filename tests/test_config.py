@@ -32,7 +32,54 @@ def test_load_config_missing_file_uses_defaults():
     assert config.github.default_org == "Cerios-TechLab"
 
 
-def test_load_config_env_token(monkeypatch):
+def test_load_config_env_token(tmp_path, monkeypatch):
+    config_file = tmp_path / "config.yaml"
+    config_file.write_text("""
+github:
+  token_env: GITHUB_TOKEN
+  default_org: "TestOrg"
+cicd:
+  provider: github_actions
+coverage:
+  source: local
+  format: cobertura
+projects: []
+""")
     monkeypatch.setenv("GITHUB_TOKEN", "test-token-123")
-    config = load_config()
+    config = load_config(str(config_file))
     assert config.github.token == "test-token-123"
+
+
+def test_load_config_env_token_custom_name(tmp_path, monkeypatch):
+    config_file = tmp_path / "config.yaml"
+    config_file.write_text("""
+github:
+  token_env: GH_TOKEN
+  default_org: "TestOrg"
+cicd:
+  provider: github_actions
+coverage:
+  source: local
+  format: cobertura
+projects: []
+""")
+    monkeypatch.setenv("GH_TOKEN", "custom-token-456")
+    config = load_config(str(config_file))
+    assert config.github.token == "custom-token-456"
+
+
+def test_load_config_no_token_no_env(tmp_path, monkeypatch):
+    config_file = tmp_path / "config.yaml"
+    config_file.write_text("""
+github:
+  token_env: GITHUB_TOKEN
+cicd:
+  provider: github_actions
+coverage:
+  source: local
+  format: cobertura
+projects: []
+""")
+    monkeypatch.delenv("GITHUB_TOKEN", raising=False)
+    config = load_config(str(config_file))
+    assert config.github.token == ""
